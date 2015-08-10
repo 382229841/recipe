@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf8" />
+    <title></title>
+    <meta name="keywords" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="yes" />
+	
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+	
+	<link href="css/layout.css" rel="stylesheet" type="text/css" />
+	
+	<script src="js/lib/zepto.min.js" type="text/javascript"></script>
+	<script src="js/lib/touch.js" type="text/javascript"></script> 
+    
+    <script src="js/main.js" type="text/javascript"></script>
+	
+	
+	<style type="text/css">
+		@charset "utf-8";
+		/* CSS Document */
+		body,h6,h5,h4,h3,h2,h1{
+			margin: 0;
+			padding: 0;
+			font-family: "Arial, Helvetica, sans-serif";
+			line-height: 23px;
+			font-size: 13px;
+		}
+		#con{ 
+			border: 1px solid #009933;
+			margin: 0px;
+			width: 180px;
+			height: 200px;
+			position: absolute;
+			left: 30px;
+			top:40px;
+		}
+		#title,#main{ 
+			margin: 10px;
+			text-align: center;
+		}
+		#title{
+			background:#009933;
+			height: 30px;
+			line-height: 30px;
+			font-size: 16px;
+			color: #fff;
+		}
+		#main{ 
+			height: 140px;
+			font-size: 14px;
+			line-height: 20px;
+			color:#0058d2;
+		}
+	</style>
+</head>
+<body>
+		<div id="con">  
+			<div id="title">title</div>
+			<div id="main">点击title,移动整个框</div>
+		</div>
+</body>
+<script type="text/javascript">
+;(function($){
+	/*touchstart the title and drag the con moving*/ 
+	var moveX,moveY,startX,startY;
+	$(document).on("touchstart","#title",function(event){
+		if($(event.target).attr('id') == 'title'){ 
+			var touchPros = event.touches[0]; 
+			startX = touchPros.pageX - event.target.parentNode.offsetLeft;   
+			startY = touchPros.pageY - event.target.parentNode.offsetTop; 
+		} 
+		return false;
+	}).on("touchmove","#title",function(event){
+		if($(event.target).attr('id') == 'title'){      
+			var touchPros = event.touches[0]; 
+			moveX = touchPros.pageX - startX;
+			moveY = touchPros.pageY - startY;
+			$('#con').css('left',moveX).css('top',moveY);
+		}
+	});
+})(Zepto); 
+</script>
+
+
+</script>
+</html>
