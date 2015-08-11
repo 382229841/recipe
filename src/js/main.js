@@ -58,3 +58,25 @@ function FAQTemplate(items){
 	}
 	return html;
 }
+function initApp(){
+	$(".touchable").on("touchstart MSPointerDown pointerdown",function(){
+		$(this).addClass('touched');
+	});
+	$(".touchable").on("touchend MSPointerUp pointerup",function(){
+		$(this).removeClass('touched');
+	});
+	
+	$("a").on("touchstart MSPointerDown pointerdown",function(){
+		$(this).addClass('touched');
+	});
+	$("a").on("touchend MSPointerUp pointerup",function(){
+		$(this).removeClass('touched');
+	});
+	
+	$(".dropdown").on("touch click",function(){		
+		$(".dropdown .dropdown-items").hasClass("open")?
+		$(".dropdown .dropdown-items").removeClass("open")
+		:
+		$(".dropdown .dropdown-items").addClass("open");
+	});
+}

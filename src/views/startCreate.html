@@ -1,0 +1,36 @@
+<style type="text/css">
+	
+
+</style>
+
+<div class="container">
+
+	<div class="panel">
+		<span class="panel-title">Create Dish</span>
+		<div class="panel-content">
+			<div class="table">				
+				<div class="table-row">
+					<div class="table-cell-title">Dish Name</div>
+					<div class="table-cell"><input type="text" ng-model="dish.name"/></div>
+				</div>				
+				
+				<div class="table-row">
+					<div class="table-cell-title">Description</div>
+					<div class="table-cell"><textarea ng-model="dish.description"></textarea></div>
+				</div>
+			</div>
+				
+		</div>
+		
+		
+		
+		
+		<div class="panel-tools">
+			<button>
+				<a ui-sref="{{doAction('createCode')['state']}}" ng-bind="doAction('createCode')['title']"></a>
+			</button>
+		</div>
+	</div>
+	
+	
+</div>

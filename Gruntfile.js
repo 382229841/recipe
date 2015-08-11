@@ -113,12 +113,45 @@ module.exports = function (grunt) {
         options: {
           hostname: '0.0.0.0',
           port: 3003,
-          base: ['.', 'src'],
+          //base: ['.', 'src'],
+		  open:true,
+		  /* middleware: [
+			  function myMiddleware(req, res, next) {
+				grunt.log.writeln('Starting static web server in "www-root" on port 9001.');
+				//res.end('Hello, world!');
+				//return next();
+			  }
+		  ], */
+		  middleware: function(connect, options, middlewares) {
+			 middlewares.unshift(function(req, res, next) {
+				var redirectUrl=[];
+				redirectUrl['/recipe']=1;
+				if(redirectUrl[req.url]) {
+					res.statusCode = 302;
+					res.setHeader("Location", "/#"+req.url);
+					res.end();
+				}
+				grunt.log.writeln(req.url);
+				
+				return next();
+				
+			});
+			 return middlewares;
+		 },
+		  base: {
+			  path: 'src',
+			  options: {
+				index: 'index.html',
+				maxAge: 0
+			  }
+			},
           keepalive: true
         }
       }
     }
-  });
+  }); 
+  
+  
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks("grunt-contrib-concat");  
   grunt.loadNpmTasks('grunt-contrib-connect');
@@ -133,5 +166,6 @@ module.exports = function (grunt) {
 
   // д╛хохннЯ///
   grunt.registerTask('default', ['concat:combinea','concat:combineb','concat:css','uglify:builda', 'uglify:buildb', 'cssmin','copy','concurrent:devel']);
-}
+  
+ }
 //http://www.cnblogs.com/artwl/p/3449303.html
