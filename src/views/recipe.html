@@ -12,13 +12,13 @@
 	<div class="panel-caption">&nbsp;{{dish.name || '回锅肉'}}
 	
 		<div class="dropdown">
-			<div class="dropdown-btn"><span class="touchable">...</span></div>
-			<div class="dropdown-items open">
-				<a>Heater</a>
-				<a>Box</a>
-				<a>Stirrer</a>
-				<a>Repeater</a>
-				<a>Timer</a>
+			<div class="dropdown-btn"><span class="touchable" style="color:#63C694;font-weight:bold;text-shadow:2px 2px 2px #d7d7d7;">...</span></div>
+			<div class="dropdown-items">
+				<a ng-click="setHeater();">Heater</a>
+				<a ng-click="setBox();">Box</a>
+				<a ng-click="setStirrer();">Stirrer</a>
+				<a ng-click="setRepeater();">Repeater</a>
+				<a ng-click="setTimer();">Timer</a>
 			</div>
 		</div>
 	</div>
